@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/users/login', 'UserController@login');
+Route::get('/users/register', 'UserController@register');
