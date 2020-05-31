@@ -29,14 +29,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        @guest
+                        @yield('menubar')
+                        {{-- @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('users/login') }}">Login</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('users/register') }}">Register</a>
                             </li>
-                        @endguest
+                        @endguest --}}
                     </ul>
                 </div>
             </div>
