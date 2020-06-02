@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required',
             'mail' => 'required|email',
-            'pass' => 'required|size:7',
+            'pass' => 'required|min:7',
             'conf_pass' => 'required|same:pass',
         ];
     }
@@ -38,7 +38,7 @@ class UserRequest extends FormRequest
             'mail.required'         => 'メールアドレスは必須項目です。',
             'mail.email'            => 'メールアドレスの形式を確認して下さい。',
             'pass.required'         => 'パスワードは必須項目です。',
-            'pass.size'             => 'パスワードは7文字以上で入力して下さい。',
+            'pass.min'             => 'パスワードは7文字以上で入力して下さい。',
             'conf_pass.same'        => '同じパスワードを入力して下さい。',
             'conf_pass.required'    => '確認用パスワードは必須項目です。',
         ];

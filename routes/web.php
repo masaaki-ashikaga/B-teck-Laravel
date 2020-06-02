@@ -17,4 +17,4 @@ Route::get('/', function () {
 
 Route::get('/users/login', 'UserController@login');
 Route::get('/users/register', 'UserController@register');
-Route::post('/users/home', 'UserController@home');
+Route::post('/users/register', 'UserController@home');
