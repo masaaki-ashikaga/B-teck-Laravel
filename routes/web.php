@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/users/login', 'UserController@login');
 Route::get('/users/register', 'UserController@register');
 Route::post('/users/register', 'UserController@home');
+
+Route::get('/tasks/index', 'TaskController@index');
+Route::post('/tasks/create', 'TasksController@create');
