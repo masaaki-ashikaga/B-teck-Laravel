@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+    @if(count($errors) > 0)
+    @foreach($errors->all() as $error)
+    <p style="color: red; font-weight: bold;">{{ $error }}</p>
+    @endforeach
+    @endif
     <h1>ToDoリスト</h1>
     <div class="status">
         <input type="checkbox">すべて
@@ -21,7 +26,13 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->comment }}</td>
-                        <td>{{ $item->status }}</td>
+                        @if($item->status === 0)
+                        <td><input type="button" value="作業中"></td>
+                        <td><input type="button" value="削除"></td>
+                        @elseif($item->status === 1)
+                        <td><input type="button" value="完了"></td>
+                        <td><input type="button" value="削除"></td>
+                        @endif
                     </tr>
                 @endforeach
             @endisset
@@ -30,7 +41,9 @@
     <div class="add_task">
         <h2>新規タスクの追加</h2>
         <form action="/tasks/create" method="POST">
+            {{ csrf_field() }}
             <input type="text" name="comment">
+            <input type="hidden" name="status" value="0">
             <input type="submit" value="追加">
         </form>
     </div>

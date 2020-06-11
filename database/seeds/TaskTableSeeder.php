@@ -18,22 +18,22 @@ class TaskTableSeeder extends Seeder
         DB::table('tasks')->insert($param);
         $param = [
             'comment' => 'テストコメント２',
-            'status' => '2',
+            'status' => '0',
         ];
         DB::table('tasks')->insert($param);
         $param = [
             'comment' => 'テストコメント３',
-            'status' => '3',
+            'status' => '0',
         ];
         DB::table('tasks')->insert($param);
         $param = [
             'comment' => 'テストコメント４',
-            'status' => '4',
+            'status' => '0',
         ];
         DB::table('tasks')->insert($param);
         $param = [
             'comment' => 'テストコメント５',
-            'status' => '5',
+            'status' => '0',
         ];
         DB::table('tasks')->insert($param);
     }

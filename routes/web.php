@@ -19,5 +19,5 @@ Route::get('/users/login', 'UserController@login');
 Route::get('/users/register', 'UserController@register');
 Route::post('/users/register', 'UserController@home');
 
-Route::get('/tasks/index', 'TaskController@index');
-Route::post('/tasks/create', 'TasksController@create');
+Route::get('/tasks', 'TaskController@index');
+Route::post('/tasks/create', 'TaskController@create');
