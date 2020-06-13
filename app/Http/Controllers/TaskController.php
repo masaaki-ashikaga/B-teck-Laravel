@@ -14,14 +14,17 @@ class TaskController extends Controller
         return view('tasks.index', compact('items'));
     }
 
-    public function create(Request $request)
+    public function create(TaskRequest $request)
     {
-        $this->validate($request, Task::$rules);
+        // $this->validate($request, Task::$rules);
+        // $form = $request->all();
+        // unset($form['_token']);
+        // $task->fill($form)->save();
         $task = new Task;
-        $form = $request->all();
-        unset($form['_token']);
-        $task->fill($form)->save();
-        return redirect('/tasks');
+        $task->comment = $request->comment;
+        $task->status = 0;
+        $task->save();
+        return redirect()->back();
     }
 
 }

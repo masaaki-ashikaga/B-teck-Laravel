@@ -40,10 +40,10 @@
     </div>
     <div class="add_task">
         <h2>新規タスクの追加</h2>
-        <form action="/tasks/create" method="POST">
+        <form action="/tasks" method="POST">
             {{ csrf_field() }}
             <input type="text" name="comment">
-            <input type="hidden" name="status" value="0">
+            <input type="hidden" name="status">
             <input type="submit" value="追加">
         </form>
     </div>
