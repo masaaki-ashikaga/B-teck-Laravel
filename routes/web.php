@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/users/login', 'UserController@login');
+Route::get('/users/register', 'UserController@register');
+Route::post('/users/register', 'UserController@home');
+
+Route::get('/tasks', 'TaskController@index');
+Route::post('/tasks', 'TaskController@create');
