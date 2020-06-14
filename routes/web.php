@@ -21,3 +21,4 @@ Route::post('/users/register', 'UserController@home');
 
 Route::get('/tasks', 'TaskController@index');
 Route::post('/tasks', 'TaskController@create');
+Route::post('/tasks/del', 'TaskController@delete');

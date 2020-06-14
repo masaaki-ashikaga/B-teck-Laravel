@@ -27,4 +27,10 @@ class TaskController extends Controller
         return redirect()->back();
     }
 
+    public function delete(Request $request)
+    {
+        Task::find($request->id)->delete();
+        return redirect()->back();
+    }
+
 }
