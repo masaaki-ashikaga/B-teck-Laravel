@@ -24,15 +24,19 @@
             @isset($items)
                 @foreach($items as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->comment }}</td>
-                        @if($item->status === 0)
-                        <td><input type="button" value="作業中"></td>
-                        <td><input type="button" value="削除"></td>
-                        @elseif($item->status === 1)
-                        <td><input type="button" value="完了"></td>
-                        <td><input type="button" value="削除"></td>
-                        @endif
+
+                        <form action="/tasks/del" method="POST">
+                            {{ csrf_field() }}
+                            @if($item->status === 0)
+                            <td><input type="button" value="作業中"></td>
+                            @elseif($item->status === 1)
+                            <td><input type="button" value="完了"></td>
+                            @endif
+                            <input type="hidden"  name="id" value="{{ $item->id }}">
+                            <td><input type="submit" name="del" value="削除"></td>
+                        </form>
                     </tr>
                 @endforeach
             @endisset
