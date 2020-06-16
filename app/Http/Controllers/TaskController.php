@@ -27,10 +27,18 @@ class TaskController extends Controller
         return redirect()->back();
     }
 
-    public function delete(Request $request)
+    public function change(Request $request, Task $task)
     {
-        Task::find($request->id)->delete();
-        return redirect()->back();
+        if($request->input('changeStatus'))
+        {
+            $submit_task = Task::find($request->id);
+            $task->changeStatus($submit_task);
+            return redirect()->back();
+        } 
+        elseif($request->input('del'))
+        {
+            Task::find($request->id)->delete();
+            return redirect()->back();
+        }
     }
-
 }

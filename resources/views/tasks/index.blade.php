@@ -27,13 +27,14 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->comment }}</td>
 
-                        <form action="/tasks/del" method="POST">
+                        <form action="/tasks/change" method="POST">
                             {{ csrf_field() }}
-                            @if($item->status === 0)
-                            <td><input type="button" value="作業中"></td>
-                            @elseif($item->status === 1)
-                            <td><input type="button" value="完了"></td>
-                            @endif
+                            <input type="hidden" name="status" value="{{ $item->status }}">
+                                @if($item->status === 0)
+                                    <td><input type="submit" name="changeStatus" value="作業中"></td>
+                                @elseif($item->status === 1)
+                                    <td><input type="submit" name="changeStatus" value="完了"></td> 
+                                @endif  
                             <input type="hidden"  name="id" value="{{ $item->id }}">
                             <td><input type="submit" name="del" value="削除"></td>
                         </form>
