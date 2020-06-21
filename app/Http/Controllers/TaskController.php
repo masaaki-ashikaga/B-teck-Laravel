@@ -32,9 +32,10 @@ class TaskController extends Controller
         if($request->input('changeStatus'))
         {
             $submit_task = Task::find($request->id);
+
             $task->changeStatus($submit_task);
             return redirect()->back();
-        } 
+        }
         elseif($request->input('del'))
         {
             Task::find($request->id)->delete();

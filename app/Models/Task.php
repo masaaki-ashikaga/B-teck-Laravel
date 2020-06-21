@@ -19,7 +19,7 @@ class Task extends Model
     //         $submit_task->status = 1;
     //         $submit_task->save();
     //         $status = $submit_task->status;
-    //     } 
+    //     }
     //     elseif($submit_task->status == 1)
     //     {
     //         $submit_task->status = 0;
