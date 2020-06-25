@@ -1,30 +1,22 @@
-function onRadioButtonclick() {
-    check1 = document.form1.Radio1.checked;
-    check2 = document.form1.Radio2.checked;
-    check3 = document.form1.Radio3.checked;
-    var all = document.querySelectorAll('.working, .complete');
-    var working = document.querySelectorAll('.working');
-    var complete = document.querySelectorAll('.complete');
-    if (check1 == true) {
-        all.forEach(function(elem){
-            elem.style.display = "";
-        });
-    }
-    else if (check2 == true) {
-        working.forEach(function(elem){
-            elem.style.display = "";
-        });
-        complete.forEach(function(elem){
-            elem.style.display = "none";
-        });
-    }
-    else if (check3 == true) {
-        working.forEach(function(elem){
-            elem.style.display = "none";
-        });
-        complete.forEach(function(elem){
-            elem.style.display = "";
-        });
-    }
-}
+//Radioボタン
+const all =document.getElementById('all');
+const working = document.getElementById('working');
+const completed = document.getElementById('completed');
 
+//Task Element
+const tasks = document.querySelectorAll('.tasks');
+const completedTasks = document.querySelectorAll('.completedTask');
+const workingTasks = document.querySelectorAll('.workingTask');
+
+//Method
+document.getElementById('task-form').addEventListener('click',() => {
+    if(all.checked){
+        tasks.forEach(task => task.style.display = 'table-row');
+    } else if(completed.checked){
+        completedTasks.forEach(task => task.closest('.tasks').style.display = 'table-row');
+        workingTasks.forEach(task => task.closest('.tasks').style.display = 'none');
+    } else if(working.checked){
+        completedTasks.forEach(task => task.closest('.tasks').style.display = 'none');
+        workingTasks.forEach(task => task.closest('.tasks').style.display = 'table-row');
+    }
+});
