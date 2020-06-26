@@ -22,4 +22,5 @@ Route::post('/users/register', 'UserController@home');
 
 Route::get('/tasks', 'TaskController@index');
 Route::post('/tasks', 'TaskController@create');
-Route::post('/tasks/change', 'TaskController@change');
+Route::post('/delete', 'TaskController@delete');
+Route::post('/statusUpdate', 'TaskController@statusUpdate');

@@ -1,46 +1,50 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
+
+
+@section('title', 'ToDo List')
+
+@section('content')
     @if(count($errors) > 0)
-    @foreach($errors->all() as $error)
-    <p style="color: red; font-weight: bold;">{{ $error }}</p>
-    @endforeach
+        @foreach($errors->all() as $error)
+            <p style="color: red; font-weight: bold;">{{ $error }}</p>
+        @endforeach
     @endif
     <h1>ToDoリスト</h1>
-    <div class="status">
-        <input type="checkbox">すべて
-        <input type="checkbox">作業中
-        <input type="checkbox">完了
-    </div>
-    <div class="tasks">
-        <table>
-            <tr><th>ID</th><th>コメント</th><th>状態</th></tr>
-            @isset($items)
-                @foreach($items as $item)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->comment }}</td>
+    <form id="task-form">
+        <label class="radio-inline"><input type="radio" id="all" name="task" checked>全て</label>
+        <label class="radio-inline"><input type="radio" id="working" name="task">作業中</label>
+        <label class="radio-inline"><input type="radio" id="completed" name="task">完了</label>
+    </form>
 
-                        <form action="/tasks/change" method="POST">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="status" value="{{ $item->status }}">
-                                @if($item->status === 0)
-                                    <td><input type="submit" name="changeStatus" value="作業中"></td>
-                                @elseif($item->status === 1)
-                                    <td><input type="submit" name="changeStatus" value="完了"></td> 
-                                @endif  
-                            <input type="hidden"  name="id" value="{{ $item->id }}">
-                            <td><input type="submit" name="del" value="削除"></td>
-                        </form>
+    <div>
+        <table>
+            <tr><th>ID</th><th style="width: 250px;">コメント</th><th>状態</th></tr>
+                @foreach($items as $task)
+                    <tr class="tasks">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{$task->comment}}</td>
+                        <td>
+                            <form action="/statusUpdate" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$task->id}}">
+                                <input type="hidden" name="status" value="{{$task->status}}">
+                                    @if($task->status === 1)
+                                       <input class="completedTask" type="submit" value="完了">
+                                    @else
+                                       <input class="workingTask" type="submit" value="作業中">
+                                    @endif
+                            </form>
+                        </td>
+
+                        <td>
+                            <form action="/delete" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{$task->id}}">
+                                <input type="submit" value="削除">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
-            @endisset
         </table>
     </div>
     <div class="add_task">
@@ -52,5 +56,6 @@
             <input type="submit" value="追加">
         </form>
     </div>
-</body>
-</html>
+    <script src="{{ asset('/js/index.js') }}"></script>
+
+@endsection
