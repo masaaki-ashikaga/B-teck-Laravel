@@ -24,3 +24,7 @@ Route::get('/tasks', 'TaskController@index');
 Route::post('/tasks', 'TaskController@create');
 Route::post('/delete', 'TaskController@delete');
 Route::post('/statusUpdate', 'TaskController@statusUpdate');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
