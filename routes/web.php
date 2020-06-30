@@ -27,6 +27,10 @@ Route::group(['prefix' => 'boards', 'middleware' => 'auth'], function(){
     Route::post('destroy/{id}', 'BoardsController@destroy')->name('boards.destroy');
 });
 
+Route::group(['middleware' => 'auth'], function(){
+    Route::resource('likes', 'LikesController', ['only' => ['store', 'destroy']]);
+});
+
 Route::get('/users/login', 'UserController@login');
 Route::get('/users/register', 'UserController@register');
 Route::post('/users/register', 'UserController@home');
